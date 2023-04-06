@@ -1,25 +1,21 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
         "es2021": true
     },
-    "extends": ["react-app", "react-app/jest", "prettier", "airbnb-base"],
+    "extends": ["eslint:recommended", "prettier", "airbnb-base"],
     "overrides": [],
     "parserOptions": {
         "ecmaVersion": "latest"
     },
     "rules": {
+        "indent": "error",
+        "linebreak-style": "error",
         "no-var": "error",
         "camelcase": "error",
         "no-empty": "error",
         "default-case": "error",
         "eqeqeq": "error",
-        "max-lines": ["error", 150],
-        "max-depth": ["error", 3],
-        "no-console": 0,
-        "indent": 0,
-        "linebreak-style": 0,
         "prettier/prettier": [
             "error",
             {
