@@ -1,21 +1,35 @@
 {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es2021": true
-  },
-  "extends": ["react-app", "react-app/jest", "prettier"],
-  "overrides": [],
-  "parserOptions": {
-    "ecmaVersion": "latest"
-  },
-  "rules": {
-    "no-var": "error",
-    "camelcase": "error",
-    "no-empty": "error",
-    "default-case": "error",
-    "eqeqeq": "error",
-    "max-lines": ["error", 150],
-    "max-depth": ["error", 3]
-  }
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": ["react-app", "react-app/jest", "prettier", "airbnb-base"],
+    "overrides": [],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "no-var": "error",
+        "camelcase": "error",
+        "no-empty": "error",
+        "default-case": "error",
+        "eqeqeq": "error",
+        "max-lines": ["error", 150],
+        "max-depth": ["error", 3],
+        "no-console": 0,
+        "indent": 0,
+        "linebreak-style": 0,
+        "prettier/prettier": [
+            "error",
+            {
+                "trailingComma": "es5",
+                "singleQuote": true,
+                "printWidth": 100,
+                "tabWidth": 4,
+                "semi": true
+            }
+        ]
+    },
+    "plugins": ["prettier"]
 }
