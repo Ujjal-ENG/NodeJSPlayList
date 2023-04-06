@@ -4,3 +4,4 @@ const http = require('http');
 const app = {};
 // configuration
 app.config = {};
+http.createServer();
