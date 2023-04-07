@@ -8,43 +8,59 @@ app.use(express.urlencoded());
 app.use(router);
 app.disable('case sensitive routing');
 
-router.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
-router.get('/user/:id', (req, res) => {
-  console.log(req.body);
-  res.send('Successfully get the data');
-});
-
-router.param('id', (req, res, next, id) => {
-  const user = {
-    userID: id,
-    name: 'KopanMan',
-  };
-  req.userDetails = user;
-  next();
-});
-
-router.post('/about', (req, res) => {
-  console.log(req.body);
-  res.send('This is the post route');
-});
-
-// now learnt the use cases of App.Route
-router
-  .route('/user/admin/kop')
-  .get((req, res) => {
-    res.send('This is the get route from the admin user kop');
-  })
-  .put((req, res) => {
-    res.send('This is the put route from the admin user kop');
-  })
-  .post((req, res) => {
-    res.send('This is the post route from the admin user kop');
-  })
-  .patch((req, res) => {
-    res.send('This is the patch route from the admin user kop');
+router.get('/about', (req, res) => {
+  // res.json({
+  //   name: 'Mamar Kop Kop',
+  // });
+  res.format({
+    'text/plain': () => {
+      res.send('Tmi ekhn plain text ee jaw');
+    },
+    'text/html': () => {
+      res.send('Tmi ekhn html ee jaw');
+    },
+    'application/json': () => {
+      res.send('ekhn tmi json ee jaw');
+    },
+    default: () => {
+      res.send('mama onnak geso ekhn tmi kop kop khelo');
+    },
   });
+});
+// router.get('/user/:id', (req, res) => {
+//   console.log(req.body);
+//   res.send('Successfully get the data');
+// });
+
+// router.param('id', (req, res, next, id) => {
+//   const user = {
+//     userID: id,
+//     name: 'KopanMan',
+//   };
+//   req.userDetails = user;
+//   next();
+// });
+
+// router.post('/about', (req, res) => {
+//   console.log(req.body);
+//   res.send('This is the post route');
+// });
+
+// // now learnt the use cases of App.Route
+// router
+//   .route('/user/admin/kop')
+//   .get((req, res) => {
+//     res.send('This is the get route from the admin user kop');
+//   })
+//   .put((req, res) => {
+//     res.send('This is the put route from the admin user kop');
+//   })
+//   .post((req, res) => {
+//     res.send('This is the post route from the admin user kop');
+//   })
+//   .patch((req, res) => {
+//     res.send('This is the patch route from the admin user kop');
+//   });
 
 router.all('/*', (req, res) => {
   res.send('This is the kopa Kopi path which is not valid path!!');
