@@ -8,6 +8,7 @@ app.use(express.urlencoded());
 
 // eslint-disable-next-line arrow-body-style
 const loggerWrapper = (options) => {
+  // eslint-disable-next-line func-names
   return function (req, res, next) {
     if (options.log) {
       console.log(
