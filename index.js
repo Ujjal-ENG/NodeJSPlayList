@@ -3,7 +3,7 @@ import express from 'express';
 
 const app = express();
 const router = express.Router();
-
+app.use(express.json());
 app.use(express.urlencoded());
 app.use(router);
 app.disable('case sensitive routing');
@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 router.get('/user/:id', (req, res) => {
-  console.log(req.userDetails);
+  console.log(req.body);
   res.send('Successfully get the data');
 });
 
