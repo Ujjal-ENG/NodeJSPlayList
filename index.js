@@ -11,6 +11,19 @@ app.disable('case sensitive routing');
 router.get('/', (req, res) => {
   res.send('Hello, World!');
 });
+router.get('/user/:id', (req, res) => {
+  console.log(req.userDetails);
+  res.send('Successfully get the data');
+});
+
+router.param('id', (req, res, next, id) => {
+  const user = {
+    userID: id,
+    name: 'KopanMan',
+  };
+  req.userDetails = user;
+  next();
+});
 
 router.post('/about', (req, res) => {
   console.log(req.body);
