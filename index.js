@@ -2,9 +2,20 @@
 import express from 'express';
 
 const app = express();
+const admin = express();
+
 const router = express.Router();
+
 app.use(express.urlencoded());
 app.use(router);
+
+admin.get('/dashbroad', (req, res) => {
+  console.log(admin.mountpath);
+  res.send('this is from admin page');
+});
+
+app.use('/admin', admin);
+
 router.get('/', (req, res) => {
   res.send('Hello, World!');
 });
