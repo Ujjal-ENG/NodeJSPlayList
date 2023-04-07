@@ -2,14 +2,14 @@
 import express from 'express';
 
 const app = express();
-
+const router = express.Router();
 app.use(express.urlencoded());
-
-app.get('/', (req, res) => {
+app.use(router);
+router.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
-app.post('/', (req, res) => {
+router.post('/', (req, res) => {
   console.log(req.body);
   res.send('This is the post route');
 });
