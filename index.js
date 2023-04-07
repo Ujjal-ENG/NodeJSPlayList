@@ -29,6 +29,23 @@ router.post('/about', (req, res) => {
   console.log(req.body);
   res.send('This is the post route');
 });
+
+// now learnt the use cases of App.Route
+router
+  .route('/user/admin/kop')
+  .get((req, res) => {
+    res.send('This is the get route from the admin user kop');
+  })
+  .put((req, res) => {
+    res.send('This is the put route from the admin user kop');
+  })
+  .post((req, res) => {
+    res.send('This is the post route from the admin user kop');
+  })
+  .patch((req, res) => {
+    res.send('This is the patch route from the admin user kop');
+  });
+
 router.all('/*', (req, res) => {
   res.send('This is the kopa Kopi path which is not valid path!!');
 });
