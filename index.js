@@ -1,23 +1,12 @@
-// dependencies
-const http = require('http');
-const { handleReqRes } = require('./helpers/handleReqRes');
-// app object - module scaffolding
-const app = {};
+/* eslint-disable import/no-extraneous-dependencies */
+import express from 'express';
 
-// configuration
-app.config = {
-  port: 3000,
-};
+const app = express();
 
-// create server
-app.createServer = () => {
-  const server = http.createServer(app.handleReqRes);
-  server.listen(app.config.port, () => {
-    console.log(`listening to port localhost:${app.config.port}`);
-  });
-};
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
 
-// handle Request and Response
-app.handleReqRes = handleReqRes;
-// start the server
-app.createServer();
+app.listen(3000, () => {
+  console.log('Server is listening on port 3000');
+});
