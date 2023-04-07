@@ -12,21 +12,39 @@ router.get('/about', (req, res) => {
   // res.json({
   //   name: 'Mamar Kop Kop',
   // });
-  res.format({
-    'text/plain': () => {
-      res.send('Tmi ekhn plain text ee jaw');
-    },
-    'text/html': () => {
-      res.send('Tmi ekhn html ee jaw');
-    },
-    'application/json': () => {
-      res.send('ekhn tmi json ee jaw');
-    },
-    default: () => {
-      res.send('mama onnak geso ekhn tmi kop kop khelo');
-    },
-  });
+  // res.format({
+  //   'text/plain': () => {
+  //     res.send('Tmi ekhn plain text ee jaw');
+  //   },
+  //   'text/html': () => {
+  //     res.send('Tmi ekhn html ee jaw');
+  //   },
+  //   'application/json': () => {
+  //     res.send('ekhn tmi json ee jaw');
+  //   },
+  //   default: () => {
+  //     res.send('mama onnak geso ekhn tmi kop kop khelo');
+  //   },
+  // });
+  // res.cookie('name', 'Ujjal ekhn toi ghuma vai', {
+  //   expires: new Date(Date.now() + 1900000),
+  //   httpOnly: true,
+  //   secure: true,
+  // });
+  // res.end();
+  // res.redirect('/test');
+  //   res.send('redirect koira disi toke test page ja oi khne jaiya kopa');
+  //   res.end();
+  // });
+  // router.get('/test', (req, res) => {
+  //   res.json({
+  //     msg: 'mama ami to redirect hoiya aisi ei page ki kos beda toi',
+  //   });
+  //   res.end();
+
+  
 });
+
 // router.get('/user/:id', (req, res) => {
 //   console.log(req.body);
 //   res.send('Successfully get the data');
