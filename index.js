@@ -85,6 +85,37 @@ const deleteDataBasedOnID = (req, res) => {
     },
   });
 };
+
+const getAllUsers = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    msg: 'This route is not yet defined',
+  });
+};
+const createUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    msg: 'This route is not yet defined',
+  });
+};
+const getOneUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    msg: 'This route is not yet defined',
+  });
+};
+const updateUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    msg: 'This route is not yet defined',
+  });
+};
+const deleteUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    msg: 'This route is not yet defined',
+  });
+};
 // routes path
 app.route('/api/v1/foods').get(getAllFoods).post(createFoodData);
 
@@ -94,6 +125,8 @@ app
   .patch(updateDataBasedOnID)
   .delete(deleteDataBasedOnID);
 
+app.route('/api/v1/users').get(getAllUsers).post(createUser);
+app.route('/api/v1/users/:id').get(getOneUser).patch(updateUser).delete(deleteUser);
 const port = 3000;
 
 app.listen(port, () => {
