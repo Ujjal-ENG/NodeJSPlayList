@@ -27,13 +27,13 @@ app.post('/api/v1/tours', (req, res) => {
 
 app.get('/api/v1/tours/:id', (req, res) => {
   const foundId = req.params.id * 1;
-  if (Data.length - 1 < foundId) {
+  const findData = Data.find((el) => el.id === foundId);
+  if (!findData) {
     res.status(404).json({
       status: 'Not Found Error',
       msg: 'Plese try again letter or request another valid id!!!',
     });
   }
-  const findData = Data.find((el) => el.id === foundId);
   res.status(200).json({
     status: 'success',
     data: {
