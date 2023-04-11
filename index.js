@@ -6,6 +6,16 @@ const Data = require('./public/dev-data/data.json');
 const app = express();
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log('This is the Middleware here 🙋‍♀️ 🙋‍♀️');
+  next();
+});
+
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
+
 app.get('/', (req, res) => {
   res.status(200).json({ msg: 'hei this the home page..' });
 });
@@ -13,6 +23,7 @@ app.get('/', (req, res) => {
 const getAllFoods = (req, res) => {
   res.status(200).json({
     status: 'success',
+    requestedAt: req.requestTime,
     results: Data.length,
     Data,
   });
