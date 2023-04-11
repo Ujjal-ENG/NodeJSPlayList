@@ -57,6 +57,20 @@ const updateDataBasedOnID = (req, res) => {
     },
   });
 };
+const deleteDataBasedOnID = (req, res) => {
+  if (Data.length - 1 < req.params.id * 1) {
+    res.status(404).json({
+      status: 'Not Found Error',
+      msg: 'Plese try again letter or request another valid id!!!',
+    });
+  }
+  res.status(200).json({
+    status: 'success',
+    data: {
+      data: 'Data is Deleted!!',
+    },
+  });
+};
 
 app.get('/api/v1/foods', getAllFoods);
 
@@ -65,6 +79,8 @@ app.post('/api/v1/foods', createFoodData);
 app.get('/api/v1/foods/:id', findSpecificIDData);
 
 app.patch('/api/v1/foods/:id', updateDataBasedOnID);
+
+app.patch('/api/v1/foods/:id', deleteDataBasedOnID);
 
 const port = 3000;
 app.listen(port, () => {
