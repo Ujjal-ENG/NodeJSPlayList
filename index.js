@@ -2,7 +2,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
 const morgan = require('morgan');
-const Data = require('./public/dev-data/data.json');
+
+const userRouter = require('./routes/userRoutes');
+const router = require('./routes/foodRoutes');
 
 const app = express();
 app.use(express.json());
@@ -23,118 +25,15 @@ app.get('/', (req, res) => {
   res.status(200).json({ msg: 'hei this the home page..' });
 });
 // route handlers
-const getAllFoods = (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    requestedAt: req.requestTime,
-    results: Data.length,
-    Data,
-  });
-};
-
-const createFoodData = (req, res) => {
-  // console.log(req.body);
-  const newID = Data[Data.length - 1].id + 1;
-  const newData = { id: newID, ...req.body };
-  Data.push(newData);
-  res.send('Done');
-};
-
-const findSpecificIDData = (req, res) => {
-  const foundId = req.params.id * 1;
-  const findData = Data.find((el) => el.id === foundId);
-  if (!findData) {
-    res.status(404).json({
-      status: 'Not Found Error',
-      msg: 'Plese try again letter or request another valid id!!!',
-    });
-  }
-  res.status(200).json({
-    status: 'success',
-    data: {
-      findData,
-    },
-  });
-};
-
-const updateDataBasedOnID = (req, res) => {
-  if (Data.length - 1 < req.params.id * 1) {
-    res.status(404).json({
-      status: 'Not Found Error',
-      msg: 'Plese try again letter or request another valid id!!!',
-    });
-  }
-  res.status(200).json({
-    status: 'success',
-    data: {
-      data: 'Data is updated!!',
-    },
-  });
-};
-const deleteDataBasedOnID = (req, res) => {
-  if (Data.length - 1 < req.params.id * 1) {
-    res.status(404).json({
-      status: 'Not Found Error',
-      msg: 'Plese try again letter or request another valid id!!!',
-    });
-  }
-  res.status(200).json({
-    status: 'success',
-    data: {
-      data: 'Data is Deleted!!',
-    },
-  });
-};
-
-const getAllUsers = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    msg: 'This route is not yet defined',
-  });
-};
-const createUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    msg: 'This route is not yet defined',
-  });
-};
-const getOneUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    msg: 'This route is not yet defined',
-  });
-};
-const updateUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    msg: 'This route is not yet defined',
-  });
-};
-const deleteUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    msg: 'This route is not yet defined',
-  });
-};
 
 // Routes
-const foodRouter = express.Router();
-const userRouter = express.Router();
-app.use('/api/v1/foods', foodRouter);
+
+app.use('/api/v1/foods', router);
 app.use('/api/v1/users', userRouter);
+
 // routes path
-foodRouter.route('/').get(getAllFoods).post(createFoodData);
 
-foodRouter
-  .route('/:id')
-  .get(findSpecificIDData)
-  .patch(updateDataBasedOnID)
-  .delete(deleteDataBasedOnID);
-
-userRouter.route('/').get(getAllUsers).post(createUser);
-userRouter.route('/:id').get(getOneUser).patch(updateUser).delete(deleteUser);
 const port = 3000;
-
 app.listen(port, () => {
   console.log(`Server is running on port localhost:${port}`);
 });
