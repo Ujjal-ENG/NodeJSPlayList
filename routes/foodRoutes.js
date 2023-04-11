@@ -6,9 +6,11 @@ const {
   findSpecificIDData,
   getAllFoods,
   updateDataBasedOnID,
+  checkID,
 } = require('../controllers/foodControlers');
 
 const foodRouter = express.Router();
+foodRouter.param('id', checkID);
 
 foodRouter.route('/').get(getAllFoods).post(createFoodData);
 

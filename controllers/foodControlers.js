@@ -2,6 +2,17 @@
 /* eslint-disable linebreak-style */
 const Data = require('../public/dev-data/data.json');
 
+const checkID = (req, res, next, val) => {
+  console.log(`The value is ${val}`);
+  if (Data.length - 1 < val * 1) {
+    return res.status(404).json({
+      status: 'Not Found Error',
+      msg: 'Plese try again letter or request another valid id!!!',
+    });
+  }
+  next();
+};
+
 const getAllFoods = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -20,14 +31,7 @@ const createFoodData = (req, res) => {
 };
 
 const findSpecificIDData = (req, res) => {
-  const foundId = req.params.id * 1;
   const findData = Data.find((el) => el.id === foundId);
-  if (!findData) {
-    res.status(404).json({
-      status: 'Not Found Error',
-      msg: 'Plese try again letter or request another valid id!!!',
-    });
-  }
   res.status(200).json({
     status: 'success',
     data: {
@@ -37,12 +41,6 @@ const findSpecificIDData = (req, res) => {
 };
 
 const updateDataBasedOnID = (req, res) => {
-  if (Data.length - 1 < req.params.id * 1) {
-    res.status(404).json({
-      status: 'Not Found Error',
-      msg: 'Plese try again letter or request another valid id!!!',
-    });
-  }
   res.status(200).json({
     status: 'success',
     data: {
@@ -51,12 +49,6 @@ const updateDataBasedOnID = (req, res) => {
   });
 };
 const deleteDataBasedOnID = (req, res) => {
-  if (Data.length - 1 < req.params.id * 1) {
-    res.status(404).json({
-      status: 'Not Found Error',
-      msg: 'Plese try again letter or request another valid id!!!',
-    });
-  }
   res.status(200).json({
     status: 'success',
     data: {
@@ -71,4 +63,5 @@ module.exports = {
   findSpecificIDData,
   updateDataBasedOnID,
   deleteDataBasedOnID,
+  checkID,
 };
