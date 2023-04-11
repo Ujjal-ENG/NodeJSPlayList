@@ -17,6 +17,15 @@ app.get('/api/v1/tours', (req, res) => {
   });
 });
 
+app.post('/api/v1/tours', (req, res) => {
+  // console.log(req.body);
+  const newID = Data[Data.length - 1].id + 1;
+  const newData = { id: newID, ...req.body };
+  Data.push(newData);
+  res.send('Done');
+});
+
+
 
 
 app.post('/', (req, res) => {
