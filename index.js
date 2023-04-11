@@ -72,15 +72,13 @@ const deleteDataBasedOnID = (req, res) => {
   });
 };
 
-app.get('/api/v1/foods', getAllFoods);
+app.route('/api/v1/foods').get(getAllFoods).post(createFoodData);
 
-app.post('/api/v1/foods', createFoodData);
-
-app.get('/api/v1/foods/:id', findSpecificIDData);
-
-app.patch('/api/v1/foods/:id', updateDataBasedOnID);
-
-app.patch('/api/v1/foods/:id', deleteDataBasedOnID);
+app
+  .route('/api/v1/foods/:id')
+  .get(findSpecificIDData)
+  .patch(updateDataBasedOnID)
+  .delete(deleteDataBasedOnID);
 
 const port = 3000;
 app.listen(port, () => {
