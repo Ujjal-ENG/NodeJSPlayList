@@ -1,11 +1,14 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
+const morgan = require('morgan');
 const Data = require('./public/dev-data/data.json');
 
 const app = express();
 app.use(express.json());
+app.use(morgan('dev'));
 
+// first middlewares
 app.use((req, res, next) => {
   console.log('This is the Middleware here 🙋‍♀️ 🙋‍♀️');
   next();
@@ -19,7 +22,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.status(200).json({ msg: 'hei this the home page..' });
 });
-
+// route handlers
 const getAllFoods = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -82,7 +85,7 @@ const deleteDataBasedOnID = (req, res) => {
     },
   });
 };
-
+// routes path
 app.route('/api/v1/foods').get(getAllFoods).post(createFoodData);
 
 app
@@ -92,6 +95,7 @@ app
   .delete(deleteDataBasedOnID);
 
 const port = 3000;
+
 app.listen(port, () => {
   console.log(`Server is running on port localhost:${port}`);
 });
