@@ -8,10 +8,14 @@ const {
   updateDataBasedOnID,
 } = require('../controllers/foodControlers');
 
-const router = express.Router();
+const foodRouter = express.Router();
 
-router.route('/').get(getAllFoods).post(createFoodData);
+foodRouter.route('/').get(getAllFoods).post(createFoodData);
 
-router.route('/:id').get(findSpecificIDData).patch(updateDataBasedOnID).delete(deleteDataBasedOnID);
+foodRouter
+  .route('/:id')
+  .get(findSpecificIDData)
+  .patch(updateDataBasedOnID)
+  .delete(deleteDataBasedOnID);
 
-module.exports = router;
+module.exports = foodRouter;

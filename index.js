@@ -4,7 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 const userRouter = require('./routes/userRoutes');
-const router = require('./routes/foodRoutes');
+const foodRouter = require('./routes/foodRoutes');
 
 const app = express();
 app.use(express.json());
@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 
 // Routes
 
-app.use('/api/v1/foods', router);
+app.use('/api/v1/foods', foodRouter);
 app.use('/api/v1/users', userRouter);
 
 // routes path
