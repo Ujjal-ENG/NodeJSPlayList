@@ -3,7 +3,6 @@
 const Data = require('../public/dev-data/data.json');
 
 const checkID = (req, res, next, val) => {
-  console.log(`The value is ${val}`);
   if (Data.length - 1 < val * 1) {
     return res.status(404).json({
       status: 'Not Found Error',
@@ -31,7 +30,7 @@ const createFoodData = (req, res) => {
 };
 
 const findSpecificIDData = (req, res) => {
-  const findData = Data.find((el) => el.id === foundId);
+  const findData = Data.find((el) => el.id === req.params.id * 1);
   res.status(200).json({
     status: 'success',
     data: {
