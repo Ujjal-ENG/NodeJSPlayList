@@ -7,6 +7,9 @@ app.get('/', (req, res) => {
   res.status(200).json({ msg: 'hei this the home page..' });
 });
 
+app.get('/api/v1/tours', (req, res) => {
+  res.status(200).json('THis is the fisrt tours api');
+});
 app.post('/', (req, res) => {
   res.send('You can post to the endpoint...');
 });
