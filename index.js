@@ -25,9 +25,16 @@ app.post('/api/v1/tours', (req, res) => {
   res.send('Done');
 });
 
-
-
-
+app.get('/api/v1/tours/:id', (req, res) => {
+  const foundId = req.params.id * 1;
+  const findData = Data.find((el) => el.id === foundId);
+  res.status(200).json({
+    status: 'success',
+    data: {
+      findData,
+    },
+  });
+});
 app.post('/', (req, res) => {
   res.send('You can post to the endpoint...');
 });
