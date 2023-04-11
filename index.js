@@ -4,28 +4,29 @@ const express = require('express');
 const Data = require('./public/dev-data/data.json');
 
 const app = express();
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.status(200).json({ msg: 'hei this the home page..' });
 });
-app.use(express.json());
 
-app.get('/api/v1/tours', (req, res) => {
+const getAllFoods = (req, res) => {
   res.status(200).json({
     status: 'success',
     results: Data.length,
     Data,
   });
-});
+};
 
-app.post('/api/v1/tours', (req, res) => {
+const createFoodData = (req, res) => {
   // console.log(req.body);
   const newID = Data[Data.length - 1].id + 1;
   const newData = { id: newID, ...req.body };
   Data.push(newData);
   res.send('Done');
-});
+};
 
-app.get('/api/v1/tours/:id', (req, res) => {
+const findSpecificIDData = (req, res) => {
   const foundId = req.params.id * 1;
   const findData = Data.find((el) => el.id === foundId);
   if (!findData) {
@@ -40,8 +41,9 @@ app.get('/api/v1/tours/:id', (req, res) => {
       findData,
     },
   });
-});
-app.patch('/api/v1/tours/:id', (req, res) => {
+};
+
+const updateDataBasedOnID = (req, res) => {
   if (Data.length - 1 < req.params.id * 1) {
     res.status(404).json({
       status: 'Not Found Error',
@@ -54,10 +56,16 @@ app.patch('/api/v1/tours/:id', (req, res) => {
       data: 'Data is updated!!',
     },
   });
-});
-app.post('/', (req, res) => {
-  res.send('You can post to the endpoint...');
-});
+};
+
+app.get('/api/v1/foods', getAllFoods);
+
+app.post('/api/v1/foods', createFoodData);
+
+app.get('/api/v1/foods/:id', findSpecificIDData);
+
+app.patch('/api/v1/foods/:id', updateDataBasedOnID);
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running on port localhost:${port}`);
