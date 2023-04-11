@@ -41,6 +41,20 @@ app.get('/api/v1/tours/:id', (req, res) => {
     },
   });
 });
+app.patch('/api/v1/tours/:id', (req, res) => {
+  if (Data.length - 1 < req.params.id * 1) {
+    res.status(404).json({
+      status: 'Not Found Error',
+      msg: 'Plese try again letter or request another valid id!!!',
+    });
+  }
+  res.status(200).json({
+    status: 'success',
+    data: {
+      data: 'Data is updated!!',
+    },
+  });
+});
 app.post('/', (req, res) => {
   res.send('You can post to the endpoint...');
 });
