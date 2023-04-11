@@ -23,7 +23,4 @@ app.use((req, res, next) => {
 app.use('/api/v1/foods', foodRouter);
 app.use('/api/v1/users', userRouter);
 
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Server is running on port localhost:${port}`);
-});
+module.exports = app;
