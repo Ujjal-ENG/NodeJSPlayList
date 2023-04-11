@@ -116,17 +116,23 @@ const deleteUser = (req, res) => {
     msg: 'This route is not yet defined',
   });
 };
-// routes path
-app.route('/api/v1/foods').get(getAllFoods).post(createFoodData);
 
-app
-  .route('/api/v1/foods/:id')
+// Routes
+const foodRouter = express.Router();
+const userRouter = express.Router();
+app.use('/api/v1/foods', foodRouter);
+app.use('/api/v1/users', userRouter);
+// routes path
+foodRouter.route('/').get(getAllFoods).post(createFoodData);
+
+foodRouter
+  .route('/:id')
   .get(findSpecificIDData)
   .patch(updateDataBasedOnID)
   .delete(deleteDataBasedOnID);
 
-app.route('/api/v1/users').get(getAllUsers).post(createUser);
-app.route('/api/v1/users/:id').get(getOneUser).patch(updateUser).delete(deleteUser);
+userRouter.route('/').get(getAllUsers).post(createUser);
+userRouter.route('/:id').get(getOneUser).patch(updateUser).delete(deleteUser);
 const port = 3000;
 
 app.listen(port, () => {
