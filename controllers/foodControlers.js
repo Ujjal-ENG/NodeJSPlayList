@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable linebreak-style */
-const Data = require('../public/dev-data/data.json');
+import Data from '../public/dev-data/data.json' assert { type: 'json' };
+
+
 
 const checkID = (req, res, next, val) => {
   if (Data.length - 1 < val * 1) {
@@ -66,7 +68,7 @@ const deleteDataBasedOnID = (req, res) => {
   });
 };
 
-module.exports = {
+export {
   getAllFoods,
   createFoodData,
   findSpecificIDData,

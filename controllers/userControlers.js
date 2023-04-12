@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 const getAllUsers = (req, res) => {
   res.status(500).json({
     status: 'error',
@@ -29,10 +30,4 @@ const deleteUser = (req, res) => {
   });
 };
 
-module.exports = {
-  getAllUsers,
-  createUser,
-  updateUser,
-  deleteUser,
-  getOneUser,
-};
+export { getAllUsers, createUser, updateUser, deleteUser, getOneUser };

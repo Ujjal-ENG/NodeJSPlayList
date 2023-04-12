@@ -1,13 +1,14 @@
+/* eslint-disable import/extensions */
 /* eslint-disable comma-dangle */
 /* eslint-disable import/no-extraneous-dependencies */
-const express = require('express');
-const morgan = require('morgan');
+import express, { json } from 'express';
+import morgan from 'morgan';
 
-const userRouter = require('./routes/userRoutes');
-const foodRouter = require('./routes/foodRoutes');
+import foodRouter from './routes/foodRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
 const app = express();
-app.use(express.json());
+app.use(json());
 app.use(morgan('dev'));
 
 // first middlewares
@@ -23,4 +24,4 @@ app.use((req, res, next) => {
 app.use('/api/v1/foods', foodRouter);
 app.use('/api/v1/users', userRouter);
 
-module.exports = app;
+export default app;

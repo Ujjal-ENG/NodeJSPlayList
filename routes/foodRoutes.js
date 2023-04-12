@@ -1,16 +1,16 @@
-/* eslint-disable import/no-import-module-exports */
-const express = require('express');
-const {
+/* eslint-disable import/extensions */
+/* eslint-disable prettier/prettier */
+import { Router } from 'express';
+import {
+  chceckBody, checkID,
   createFoodData,
   deleteDataBasedOnID,
   findSpecificIDData,
   getAllFoods,
   updateDataBasedOnID,
-  checkID,
-  chceckBody,
-} = require('../controllers/foodControlers');
+} from '../controllers/foodControlers.js';
 
-const foodRouter = express.Router();
+const foodRouter = Router();
 foodRouter.param('id', checkID);
 
 foodRouter.route('/').get(getAllFoods).post(chceckBody, createFoodData);
@@ -21,4 +21,4 @@ foodRouter
   .patch(updateDataBasedOnID)
   .delete(deleteDataBasedOnID);
 
-module.exports = foodRouter;
+export default foodRouter;
