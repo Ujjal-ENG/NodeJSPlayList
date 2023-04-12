@@ -56,13 +56,25 @@ const findSpecificIDData = async (req, res) => {
   }
 };
 
-const updateDataBasedOnID = (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    data: {
-      data: 'Data is updated!!',
-    },
-  });
+const updateDataBasedOnID = async (req, res) => {
+  try {
+    const updateId = await Food.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({
+      status: 'success',
+      message: 'Data is updated',
+      data: {
+        updateId,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: 'failded',
+      message: error,
+    });
+  }
 };
 const deleteDataBasedOnID = (req, res) => {
   res.status(200).json({
