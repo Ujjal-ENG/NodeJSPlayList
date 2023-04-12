@@ -2,7 +2,6 @@
 /* eslint-disable prettier/prettier */
 import { Router } from 'express';
 import {
-  chceckBody, checkID,
   createFoodData,
   deleteDataBasedOnID,
   findSpecificIDData,
@@ -11,9 +10,8 @@ import {
 } from '../controllers/foodControlers.js';
 
 const foodRouter = Router();
-foodRouter.param('id', checkID);
 
-foodRouter.route('/').get(getAllFoods).post(chceckBody, createFoodData);
+foodRouter.route('/').get(getAllFoods).post(createFoodData);
 
 foodRouter
   .route('/:id')
