@@ -12,6 +12,16 @@ const checkID = (req, res, next, val) => {
   next();
 };
 
+const chceckBody = (req, res, next) => {
+  if (!req.body.productName || !req.body.price) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Missing Name or Price property!!!',
+    });
+  }
+  next();
+};
+
 const getAllFoods = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -63,4 +73,5 @@ module.exports = {
   updateDataBasedOnID,
   deleteDataBasedOnID,
   checkID,
+  chceckBody,
 };
