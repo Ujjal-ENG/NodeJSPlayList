@@ -76,13 +76,21 @@ const updateDataBasedOnID = async (req, res) => {
     });
   }
 };
-const deleteDataBasedOnID = (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    data: {
-      data: 'Data is Deleted!!',
-    },
-  });
+const deleteDataBasedOnID = async (req, res) => {
+  try {
+    const deletdData = await Food.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      status: 'success',
+      data: {
+        data: deletdData,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: 'failed',
+      data: `There is something wrong!!!${error}`,
+    });
+  }
 };
 
 export {
